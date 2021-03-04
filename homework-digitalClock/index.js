@@ -8,28 +8,30 @@ let minutes = 0;
 
 const hoursParagraphs = document.querySelectorAll(".hours p");
 let hours = 0; 
+    
+    //document.getElementById("start").addEventListener();
 
+    let timeStart = setInterval(function() {
+    
+        renderDigits(seconds, secondsParagraphs);
+        renderDigits(minutes, minutesParagraphs);
+        renderDigits(hours, hoursParagraphs);
+       
+        seconds++;
+        if (seconds === 60) {
+            seconds = 0;
+            minutes++
+        }
+        if (minutes === 60) {
+            minutes = 0;
+            hours++   
+        }
+        if (hours === 24) {
+            hours = 0;
+        }
+    
+     }, 1000);
 
-setInterval(function() {
-    renderDigits(seconds, secondsParagraphs);
-    renderDigits(minutes, minutesParagraphs);
-    renderDigits(hours, hoursParagraphs);
-
-   
-    seconds++;
-    if (seconds === 60) {
-        seconds = 0;
-        minutes++
-    }
-    if (minutes === 60) {
-        minutes = 0;
-        hours++   
-    }
-    if (hours === 24) {
-        hours = 0;
-    }
-
-    }, 1000);
 
     function renderDigits(nr, pList) {
         const stringDigits = nr + "";
@@ -42,4 +44,4 @@ setInterval(function() {
             pList[0].innerText = 0;
             pList[1].innerText = digitList[0];
     }
-}
+};
